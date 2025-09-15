@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Express on EC2 behind an ELB</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Node.js + Express on EC2</h1>
+      <p>Served via Application Load Balancer</p>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Server status</h2>
+        <div class="status-row">
+          <span class="label">Health:</span>
+          <span id="health" class="badge">Checking…</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Instance:</span>
+          <span id="instance">—</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Region/AZ:</span>
+          <span id="az">—</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Server time:</span>
+          <span id="time">—</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Latency:</span>
+          <span id="latency">—</span>
+        </div>
+        <button id="refresh">Refresh</button>
+      </section>
+
+      <section class="card">
+        <h2>About this demo</h2>
+        <ul class="bullets">
+          <li>Static assets are served directly by Express from /public.</li>
+          <li>
+            Health check endpoint maps to “/health” for ELB target health.
+          </li>
+          <li>
+            Instance metadata endpoint shows which EC2 handled your request.
+          </li>
+          <li>
+            Use this page while scaling out and toggling instances behind the
+            ELB.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <small
+        >Built for manual deployment practice — swap instances and watch values
+        change.</small
+      >
+    </footer>
+
+    <script src="/script.js" defer></script>
+  </body>
+</html>
