@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("node:path");
 const os = require("node:os");
+const morgan = require("morgan");
 
 const app = express();
 const PORT = process.env.PORT || 80;
@@ -12,6 +13,8 @@ app.use(
     extensions: ["html"],
   })
 );
+
+app.use(morgan("combined"));
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
