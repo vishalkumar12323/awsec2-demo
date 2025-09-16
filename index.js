@@ -4,7 +4,7 @@ const os = require("node:os");
 const morgan = require("morgan");
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 app.use(
   express.static(path.join(__dirname, "public"), {
@@ -14,7 +14,7 @@ app.use(
   })
 );
 
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
@@ -92,4 +92,4 @@ app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
