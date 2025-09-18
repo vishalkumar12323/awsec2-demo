@@ -5,7 +5,7 @@ const morgan = require("morgan");
 
 const app = express();
 const PORT = process.env.PORT || 80;
-
+const hostname = "0.0.0.0";
 app.use(
   express.static(path.join(__dirname, "public"), {
     etag: true,
@@ -14,7 +14,7 @@ app.use(
   })
 );
 
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 app.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
@@ -88,7 +88,7 @@ app.get("/meta", async (_req, res) => {
   res.json({ instanceId, az });
 });
 
-app.get("/", (_req, res) => {
+app.get("/", hostname, (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
