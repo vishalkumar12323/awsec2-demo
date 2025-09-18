@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 const app = express();
 const PORT = process.env.PORT || 80;
+const hostname = "0.0.0.0";
 
 app.use(
   express.static(path.join(__dirname, "public"), {
@@ -88,10 +89,8 @@ app.get("/meta", async (_req, res) => {
   res.json({ instanceId, az });
 });
 
-app.get("/", hostname, (_req, res) => {
+app.get("/", (_req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.listen(PORT, "0.0.0.0", () =>
-  console.log(`Server running on port ${PORT}`)
-);
+app.listen(PORT, hostname, () => console.log(`Server running on port ${PORT}`));
